@@ -20,7 +20,7 @@ class App extends PureComponent {
               component={Home} // 组件Home
             />
             <Route
-              path={'/detail'}
+              path={'/detail/:id'} // 传递ID参数, 动态路由
               exact
               component={Detail}
             />

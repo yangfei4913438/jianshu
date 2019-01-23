@@ -13,7 +13,7 @@ class List extends PureComponent {
           articleList.map((item, index) => {
             return (
               // 因为是mock数据，所以ID，在重复获取的时候，无法唯一，这里只能通过index来变通一下
-              <Link to={'/detail'} key={item.get('id') + index}>
+              <Link to={`/detail/${item.get('id')}`} key={item.get('id') + index}>
                 <ListItem>
                   <img className='pic' src={item.get('imgUrl')} alt={''}/>
                   <ListInfo>
