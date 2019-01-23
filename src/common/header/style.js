@@ -8,7 +8,7 @@ export const HeaderWrapper = styled.div`
   border-bottom: 1px solid #f0f0f0;
 `;
 
-export const Logo = styled.a`
+export const Logo = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -98,12 +98,14 @@ export const NavSearch = styled.input.attrs({
 `;
 
 export const SearchInfo = styled.div`
+  z-index: 1; // 避免被覆盖。
   position: absolute;
   left: 0;
   top: 56px;
   width: 240px;
   padding: 0 20px;
   box-shadow: 0 0 8px rgba(0,0,0,.2);
+  background: #fff;
 `;
 
 export const SearchInfoTitle = styled.div`
