@@ -5,6 +5,7 @@ import { Route, BrowserRouter } from 'react-router-dom'
 import store from './store'
 import Home from './pages/home'
 import Detail from './pages/detail'
+import Login from './pages/login'
 
 class App extends PureComponent {
   render() {
@@ -23,6 +24,11 @@ class App extends PureComponent {
               path={'/detail/:id'} // 传递ID参数, 动态路由
               exact
               component={Detail}
+            />
+            <Route
+              path={'/login'}
+              exact
+              component={Login}
             />
           </Fragment>
         </BrowserRouter>

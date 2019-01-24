@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { createActions } from './store'
+import { createActions as loginOutCreateAction } from '../../../src/pages/login/store'
 import { Link } from 'react-router-dom'
 import {
   HeaderWrapper,
@@ -58,7 +59,7 @@ class Header extends PureComponent {
   }
 
   render () {
-    const { focused, list, handleInputFocus, handleInputBlur } = this.props;
+    const { focused, list, handleInputFocus, handleInputBlur, login, loginOut } = this.props;
     return (
       // 当成div来用
       <HeaderWrapper>
@@ -68,7 +69,12 @@ class Header extends PureComponent {
         <Nav>
           <NavItem className={'left active'}>首页</NavItem>
           <NavItem className={'left'}>下载App</NavItem>
-          <NavItem className={'right'}>登录</NavItem>
+          {
+            login ? <NavItem className={'right'} onClick={loginOut}>退出</NavItem> :
+              <Link to={'/login'}>
+                <NavItem className={'right'}>登录</NavItem>
+              </Link>
+          }
           <NavItem className={'right'}>
             <span className="iconfont">&#xe636;</span>
           </NavItem>
@@ -110,13 +116,17 @@ const mapStateToProps = (state) => {
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
     allNumber: state.getIn(['header', 'allNumber']),
-    mouseIn: state.getIn(['header', 'mouseIn'])
+    mouseIn: state.getIn(['header', 'mouseIn']),
+    login: state.getIn(['login', 'login'])
   }
 };
 
 // 映射dispatch
 const mapDispatchToProps = (dispatch) => {
   return {
+    loginOut () {
+      dispatch(loginOutCreateAction.loginOut())
+    },
     handleInputFocus(list) {
       if (list.size === 0) {
         // 已经获取到数据了，就不再向服务器请求数据了。

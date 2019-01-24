@@ -52,6 +52,16 @@ Mock.mock(/^\/api\/getArticleDetail[\s\S]*?/, 'get', {
   `
 });
 
+// 登陆模拟
+Mock.mock('/api/login', 'post', {
+  login: true
+});
+
+// 登出模拟
+Mock.mock('/api/login_out', 'get', {
+  login: false
+});
+
 // 返回数据
 Mock.mock('/api/home', 'get', {
   // 首页轮播图列表，antd的轮播图，只支持jpg格式的图片
