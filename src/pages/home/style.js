@@ -11,13 +11,11 @@ export const HomeWrapper = styled.div`
 
 export const HomeLeft = styled.div`
   width: 625px;
-  .imgs {
-    padding-bottom: 30px;
-    border-bottom: 1px solid #dcdcdc;
-  }
   .banner-img {
-    width: 625px;
-    height: 270px;
+    width: auto;
+    height: auto;
+    max-width: 100%; 
+    max-height: 100%;
   }
 `;
 

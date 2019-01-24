@@ -3,7 +3,7 @@ import {HomeWrapper,HomeLeft,HomeRight,BackTop} from './style'
 import Writer from './components/writer'
 import Recommend from './components/recommend'
 import List from './components/list'
-import { Carousel } from 'antd';
+import { Carousel } from 'element-react'
 import { connect } from 'react-redux'
 import { createActions } from './store'
 
@@ -13,17 +13,18 @@ class Home extends PureComponent {
     return (
       <HomeWrapper>
         <HomeLeft>
-          <Carousel className={'imgs'} autoplay>
+          <Carousel trigger="click" autoplay height="270px">
             {
               banners.map((item) => {
                 return (
-                  <img
-                    className={'banner-img'}
-                    title={item.get('title')}
-                    src={item.get('imgUrl')} // 因为是immutable对象，所以不能直接用过取js属性那样来取，必须用get方法来取值
-                    key={item.get('id')}
-                    alt={item.get('title')}
-                  />
+                  <Carousel.Item key={item.get('id')}>
+                    <img
+                      className='banner-img'
+                      title={item.get('title')}
+                      src={item.get('imgUrl')} // 因为是immutable对象，所以不能直接用过取js属性那样来取，必须用get方法来取值
+                      alt={item.get('title')}
+                    />
+                  </Carousel.Item>
                 )
               })
             }
