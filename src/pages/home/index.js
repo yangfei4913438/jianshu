@@ -69,8 +69,19 @@ const mapStatesToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // 回到顶部
+    // 把总共需要跨越的高度变成50份， 一个定时器每10MS执行一次，可达到平滑过渡的效果 ，做锚点也一样，可以根据目前的屏幕高度到达元素的屏幕高度，来进行平滑移动
     handleScrollTop () {
-      window.scrollTo(0, 0)
+      let top = document.documentElement.scrollTop;
+      let step = Math.floor(top / 50);
+      let timer = null;
+      timer = setInterval(() => {
+        if (top <= 0) {
+          clearInterval(timer);
+        } else {
+          top -= step;
+          window.scrollTo(0, top);
+        }
+      }, 10)
     },
     // 页面监听函数
     changeScrollTopShow () {
